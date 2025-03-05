@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>поля</title>
+    <style>
+      header,
+      main,
+      footer {
+        width: 100%;
+        height: 200px;
+        text-align: center;
+        padding: 20px;
+      }
+      header {
+        background-color: blueviolet;
+      }
+      main {
+        background-color: cadetblue;
+      }
+      footer {
+        background-color: cornflowerblue;
+      }
+      a {
+        display: inline-block;
+        color: white;
+        text-decoration: underline;
+        font-size: 18px;
+        margin-top: 10px;
+      }
+      img {
+        height: 150px;
+        width: 150px;
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body id="body">
+    <script>
+      const user = {
+        firstName: "polia",
+        lastName: "stulena",
+        nick: "chepyha",
+        email: "chepyha@example.com",
+        avatar: "./images/photo.jpg",
+        author: "samostiyna junka",
+        license: "Поліна стулена)))",
+      };
+
+      class HTMLPage {
+        constructor(teg1, teg2, teg3) {
+          this.header = teg1;
+          this.main = teg2;
+          this.footer = teg3;
+        }
+
+        createMainTegs() {
+          let x = document.getElementById("body");
+
+          let header = document.createElement(this.header);
+          let main = document.createElement(this.main);
+          let footer = document.createElement(this.footer);
+
+          x.appendChild(header);
+          x.appendChild(main);
+          x.appendChild(footer);
+        }
+
+        headerContent(userInfo) {
+          let content = document.querySelector("header");
+          let p = document.createElement("p");
+          p.innerHTML = `${userInfo.firstName} <br>
+                         ${userInfo.lastName} <br>
+                         ${userInfo.nick} <br>
+                         ${userInfo.email}`;
+          content.appendChild(p);
+        }
+
+        mainContent(userInfo) {
+          let content = document.querySelector("main");
+
+          let p = document.createElement("p");
+          p.innerHTML = `Avatar: `;
+          content.appendChild(p);
+
+          let img = document.createElement("img");
+          img.src = userInfo.avatar;
+          img.alt = "User Avatar";
+
+          content.appendChild(img);
+
+          let link = document.createElement("a");
+          link.href = "./картинки.html"; // Виправлено шлях
+          link.target = "_blank";
+          link.textContent = "інші фото";
+          content.appendChild(link);
+        }
+
+        footerContent(userInfo) {
+          let content = document.querySelector("footer");
+          let p = document.createElement("p");
+          p.innerHTML = `${userInfo.author} <br>
+                         ${userInfo.license}`;
+          content.appendChild(p);
+        }
+      }
+
+      const page = new HTMLPage("header", "main", "footer");
+      page.createMainTegs();
+      page.headerContent(user);
+      page.mainContent(user);
+      page.footerContent(user);
+    </script>
+  </body>
+</html>
